@@ -3,7 +3,6 @@ using System;
 using Infrastructure.DataProviders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -70,127 +69,6 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Entities.Cliente", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Cpf")
-                        .IsRequired()
-                        .HasColumnType("varchar(11)");
-
-                    b.Property<DateTime>("DataAtualizacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("tb_Cliente", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.ItemPedido", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("DataAtualizacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Observacao")
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)")
-                        .HasColumnName("Observacao");
-
-                    b.Property<Guid>("PedidoId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid>("ProdutoId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PedidoId");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("tb_ItemPedido", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.Pagamento", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("DataAtualizacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<Guid>("PedidoId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoPagamento")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PedidoId")
-                        .IsUnique();
-
-                    b.ToTable("tb_Pagamento", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.Pedido", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid?>("ClienteId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("DataAtualizacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("Senha")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("Senha")
-                        .IsUnique();
-
-                    b.ToTable("tb_Pedido", (string)null);
-                });
-
             modelBuilder.Entity("Domain.Entities.Produto", b =>
                 {
                     b.Property<Guid>("Id")
@@ -221,7 +99,7 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1fbcae3a-e1ff-4a95-ac90-b2880d6717ec"),
+                            Id = new Guid("10555ee4-9481-463b-bc2b-dd00e010976c"),
                             CategoriaId = new Guid("ada751db-8553-493f-b308-70bd29aed106"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -230,7 +108,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f2846fe2-c038-4220-bc99-dd9fdeb5d4e4"),
+                            Id = new Guid("9bc769c0-f99c-45bc-8e14-1357f3a5773a"),
                             CategoriaId = new Guid("ada751db-8553-493f-b308-70bd29aed106"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -239,7 +117,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d4af38ba-ded1-4c94-b0a3-b27a40bf3a20"),
+                            Id = new Guid("6dafec47-4fa2-4ba5-b445-10c8561a8079"),
                             CategoriaId = new Guid("ada751db-8553-493f-b308-70bd29aed106"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -248,7 +126,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c59b8cd8-b665-4841-9deb-5b0300427e16"),
+                            Id = new Guid("d1b73e3d-ed7d-4b52-9562-62252c3aebd3"),
                             CategoriaId = new Guid("ada751db-8553-493f-b308-70bd29aed106"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -257,7 +135,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("461098b6-4230-42a9-a947-a915fa2135e0"),
+                            Id = new Guid("33383107-d781-4e9b-b281-4ec1352b51d7"),
                             CategoriaId = new Guid("ada751db-8553-493f-b308-70bd29aed106"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -266,7 +144,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("436e3a79-87e9-4441-b07f-3dd1e9fbdbd3"),
+                            Id = new Guid("80444055-c144-4bd2-af05-5ce8cc5f2659"),
                             CategoriaId = new Guid("cf412102-35da-43d8-9c3c-b72546104c72"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -275,7 +153,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3d2509e7-7a34-460b-8d30-1f630e44f955"),
+                            Id = new Guid("934375ac-5462-4f39-9f45-639c7eeb7484"),
                             CategoriaId = new Guid("cf412102-35da-43d8-9c3c-b72546104c72"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -284,7 +162,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d92c1a55-6138-4925-b8b3-382763707a30"),
+                            Id = new Guid("df63f480-629f-4c48-97e2-001b1129d1ad"),
                             CategoriaId = new Guid("cf412102-35da-43d8-9c3c-b72546104c72"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -293,7 +171,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7e7a5e99-836f-49a2-ba52-66dc1de6161b"),
+                            Id = new Guid("d30b795b-a9f9-4d19-8580-95da502f09cf"),
                             CategoriaId = new Guid("cf412102-35da-43d8-9c3c-b72546104c72"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -302,7 +180,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("42fa3ba6-9c63-49a0-bb32-60c28b798d05"),
+                            Id = new Guid("f043487a-59dd-44da-a5fa-c1cb4b8300aa"),
                             CategoriaId = new Guid("cf412102-35da-43d8-9c3c-b72546104c72"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -311,7 +189,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4a6015b3-93a9-47bf-b2a2-0e38e845656d"),
+                            Id = new Guid("b62ef0f5-18ff-4347-b60d-adb0e2e5f3bd"),
                             CategoriaId = new Guid("cf412102-35da-43d8-9c3c-b72546104c72"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -320,7 +198,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a9a95a2f-e9ce-467a-bfff-944b9229cf58"),
+                            Id = new Guid("fb4aab78-6762-4f88-92ec-5e510c5506bb"),
                             CategoriaId = new Guid("5117243c-b007-49e8-9a30-842ec79248ae"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -329,7 +207,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("31503b1b-0192-4c39-a198-bc57ec8629fd"),
+                            Id = new Guid("b658d91f-22bf-483f-b069-a45f7cc85d63"),
                             CategoriaId = new Guid("5117243c-b007-49e8-9a30-842ec79248ae"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -338,7 +216,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("449d33a1-327d-4614-b32a-88f48a044477"),
+                            Id = new Guid("44d1a250-9f2c-4ebb-8b04-22ab9ad7aea5"),
                             CategoriaId = new Guid("5117243c-b007-49e8-9a30-842ec79248ae"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -347,7 +225,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ca37dba7-d602-4e25-b5c4-547f71448cc3"),
+                            Id = new Guid("d05e8e24-f057-453b-9315-bce164c2bd53"),
                             CategoriaId = new Guid("32f0c5f0-d9ba-40e2-8d7a-57eed4727e2b"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -356,7 +234,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("55b02f56-70ec-4169-acca-43f88e08852e"),
+                            Id = new Guid("a232906d-2928-4024-89fc-81768ef1827f"),
                             CategoriaId = new Guid("32f0c5f0-d9ba-40e2-8d7a-57eed4727e2b"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -365,7 +243,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("dbd44ec9-1262-45b4-89aa-8cc8e6f3a6f6"),
+                            Id = new Guid("3d94904b-e331-4a6d-a78e-6229b898cc82"),
                             CategoriaId = new Guid("32f0c5f0-d9ba-40e2-8d7a-57eed4727e2b"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -374,7 +252,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("28e469b2-3748-4cf9-9698-7eb80b12134e"),
+                            Id = new Guid("3861430a-eb94-421e-bf5c-7f014b7ebeb1"),
                             CategoriaId = new Guid("32f0c5f0-d9ba-40e2-8d7a-57eed4727e2b"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -383,7 +261,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2f2027af-d827-4180-bb58-e13f60ff4527"),
+                            Id = new Guid("40d45609-f162-499e-bb3c-ba4fa7e35230"),
                             CategoriaId = new Guid("32f0c5f0-d9ba-40e2-8d7a-57eed4727e2b"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -392,52 +270,13 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0793a638-d6b3-4335-b57f-4c32224b093d"),
+                            Id = new Guid("4e2375bd-d9bd-42c2-9ab5-efcc7cb35462"),
                             CategoriaId = new Guid("32f0c5f0-d9ba-40e2-8d7a-57eed4727e2b"),
                             DataAtualizacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nome = "Sundae Misto",
                             Valor = 6.00m
                         });
-                });
-
-            modelBuilder.Entity("Domain.Entities.ItemPedido", b =>
-                {
-                    b.HasOne("Domain.Entities.Pedido", "Pedido")
-                        .WithMany("ItensPedido")
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Produto", "Produto")
-                        .WithMany("ItensPedido")
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pedido");
-
-                    b.Navigation("Produto");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Pagamento", b =>
-                {
-                    b.HasOne("Domain.Entities.Pedido", "Pedido")
-                        .WithOne("Pagamento")
-                        .HasForeignKey("Domain.Entities.Pagamento", "PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pedido");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Pedido", b =>
-                {
-                    b.HasOne("Domain.Entities.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId");
-
-                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("Domain.Entities.Produto", b =>
@@ -454,18 +293,6 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Categoria", b =>
                 {
                     b.Navigation("Produtos");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Pedido", b =>
-                {
-                    b.Navigation("ItensPedido");
-
-                    b.Navigation("Pagamento");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Produto", b =>
-                {
-                    b.Navigation("ItensPedido");
                 });
 #pragma warning restore 612, 618
         }
