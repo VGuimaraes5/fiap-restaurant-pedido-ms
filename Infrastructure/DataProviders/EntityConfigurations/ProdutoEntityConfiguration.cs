@@ -20,10 +20,6 @@ namespace Infrastructure.DataProviders.EntityConfigurations
 
             builder.HasOne(p => p.Categoria)
                 .WithMany(p => p.Produtos);
-
-            builder.HasMany(p => p.ItensPedido)
-                .WithOne(p => p.Produto)
-                .HasForeignKey(p => p.ProdutoId);
         }
     }
 }

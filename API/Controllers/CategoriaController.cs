@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Application.Models.CategoriaModel;
 using Application.UseCases;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -33,6 +29,5 @@ namespace API.Controllers
 
             return NoContent();
         }
-
     }
 }
