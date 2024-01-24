@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $repositoryName
+spec:
+  selector:
+    matchLabels:
+      app: $repositoryName
+  template:
+    metadata:
+      labels:
+        app: $repositoryName
+    spec:
+      imagePullSecrets:
+      - name: ecr
+      containers:
+      - name: apagamento-mspi
+        image: $awsEcrRegistry/$repositoryName:$imgTag
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 500m
+          limits:
+            memory: 256Mi
+            cpu: 500m
+        env:
+          - name: ASPNETCORE_URLS
+            value: http://*:$appPort
+          - name: ConnectionStrings__ConnectionString
+            value: $connectionString
+          - name: Aws__PoolId
+            value: $poolId
+          - name: Aws__PoolClientId
+            value: $poolClientId
+        ports:
+        - containerPort: $appPort
+          name: $(repositoryName)
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: $(repositoryName)-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: $repositoryName
+  minReplicas: 1
+  maxReplicas: 2
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 40
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: $repositoryName-svs
+spec:
+  type: LoadBalancer
+  ports:
+  - port: $appPort
+    targetPort: $appPort
+  selector:
+    app: $repositoryName
