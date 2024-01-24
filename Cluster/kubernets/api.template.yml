@@ -19,10 +19,10 @@ spec:
         resources:
           requests:
             memory: 500Mi
-            cpu: 500m
+            cpu: '1'
           limits:
             memory: 500Mi
-            cpu: 500m
+            cpu: '1'
         env:
           - name: ASPNETCORE_URLS
             value: http://*:$appPort
