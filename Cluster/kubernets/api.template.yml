@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: $repositoryName
+  name: pedido
 spec:
   selector:
     matchLabels:
-      app: $repositoryName
+      app: pedido
   template:
     metadata:
       labels:
-        app: $repositoryName
+        app: pedido
     spec:
       imagePullSecrets:
       - name: ecr
@@ -34,17 +34,17 @@ spec:
             value: $poolClientId
         ports:
         - containerPort: $appPort
-          name: $repositoryName
+          name: pedido
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: $repositoryName-hpa
+  name: pedido-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: $repositoryName
+    name: pedido
   minReplicas: 1
   maxReplicas: 2
   metrics:
@@ -58,11 +58,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: $repositoryName-svs
+  name: pedido-svs
 spec:
   type: LoadBalancer
   ports:
   - port: $appPort
     targetPort: $appPort
   selector:
-    app: $repositoryName
+    app: pedido
