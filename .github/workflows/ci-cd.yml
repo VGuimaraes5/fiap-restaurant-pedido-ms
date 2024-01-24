@@ -49,7 +49,7 @@ jobs:
     - name: Install kubectl
       uses: ianbelcher/eks-kubectl-action@master
       with:
-        cluster_name: $CLUSTER_NAME
+        cluster_name: ${{ vars.CLUSTER_NAME }}
         kubernetes_version: v1.21.0
 
     - name: Update kube config
