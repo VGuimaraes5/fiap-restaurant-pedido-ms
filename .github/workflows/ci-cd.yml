@@ -63,7 +63,7 @@ jobs:
         echo "imgTag=${{ github.sha }}" >> $GITHUB_ENV
         echo "awsEcrRegistry=${{ vars.REGISTRY }}" >> $GITHUB_ENV
         echo "appPort=${{ vars.APP_PORT }}" >> $GITHUB_ENV
-        echo "repositoryName=${{ github.event.repository.name }} " >> $GITHUB_ENV
+        echo "repositoryName=${{ github.event.repository.name }}" >> $GITHUB_ENV
 
     - name: Replaces envs
       run: |

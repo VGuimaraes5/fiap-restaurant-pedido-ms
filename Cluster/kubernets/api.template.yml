@@ -34,12 +34,12 @@ spec:
             value: $poolClientId
         ports:
         - containerPort: $appPort
-          name: $(repositoryName)
+          name: $repositoryName
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: $(repositoryName)-hpa
+  name: $repositoryName-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
