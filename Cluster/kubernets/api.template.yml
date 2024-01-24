@@ -14,7 +14,7 @@ spec:
       imagePullSecrets:
       - name: ecr
       containers:
-      - name: apagamento-mspi
+      - name: pedido
         image: $awsEcrRegistry/$repositoryName:$imgTag
         resources:
           requests:
