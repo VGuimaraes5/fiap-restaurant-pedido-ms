@@ -18,11 +18,11 @@ spec:
         image: $awsEcrRegistry/$repositoryName:$imgTag
         resources:
           requests:
-            memory: 500Mi
-            cpu: '1'
+            memory: 256Mi
+            cpu: 500m
           limits:
-            memory: 500Mi
-            cpu: '1'
+            memory: 256Mi
+            cpu: 500m
         env:
           - name: ASPNETCORE_URLS
             value: http://*:$appPort
