@@ -45,5 +45,5 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"VGuimaraes5_fiap-restaurant-pedido-ms" /o:"fiap-tech-challenge" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build ./API/API.csproj --no-incremental
-          dotnet test --collect "Code Coverage"
+          dotnet test --collect "Code Coverage" --output build/reports/coverage.xml
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
