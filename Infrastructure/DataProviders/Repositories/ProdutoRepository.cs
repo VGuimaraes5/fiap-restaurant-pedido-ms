@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
 using Domain.Gateways;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Infrastructure.DataProviders.Repositories
 {

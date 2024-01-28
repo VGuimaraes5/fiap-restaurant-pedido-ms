@@ -22,8 +22,6 @@ namespace Domain.Entities
         public Guid CategoriaId { get; private set; }
 
         public virtual Categoria Categoria { get; set; }
-        public virtual ICollection<ItemPedido> ItensPedido { get; set; }
-
         public void ValidateEntity()
         {
             AssertionConcern.AssertArgumentNotNull(Id, "O Id não pode estar vazio!");

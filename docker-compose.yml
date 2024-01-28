@@ -1,0 +1,52 @@
+version: "3.4"
+
+services:
+  ms-pedido:
+    image: ${DOCKER_REGISTRY-}restaurant-pedido-ms
+    container_name: restaurant-pedido-ms
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      ASPNETCORE_URLS: http://*:5001
+      ConnectionStrings__ConnectionString: server=mysqldatabase;port=3306;database=pedidos;uid=pedidos_user;password=pedidos_password
+    depends_on:
+      mysqldatabase:
+        condition: service_healthy
+    networks:
+      - db_network_restaurant_pedido
+
+  mysqldatabase:
+    image: mysql:8.0.27
+    container_name: mysqldatabase_pedido
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "challenge"
+      MYSQL_DATABASE: "pedidos"
+      MYSQL_USER: "pedidos_user"
+      MYSQL_PASSWORD: "pedidos_password"
+    ports:
+      - "3306:3306"
+      - "33060:33060"
+    expose:
+      - 3306
+      - 33060
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/init:/docker-entrypoint-initdb.d/
+    networks:
+      - db_network_restaurant_pedido
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  db_data:
+
+networks:
+  db_network_restaurant_pedido:
