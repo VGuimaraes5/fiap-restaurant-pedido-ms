@@ -47,5 +47,9 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"VGuimaraes5_fiap-restaurant-pedido-ms" /o:"fiap-tech-challenge" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
           dotnet build ./API/API.csproj --no-incremental
-          dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
+          coverlet .\CovExample.Tests\bin\Debug\net6.0\CovExample.Tests.dll
+              --target "dotnet" 
+              --targetargs "test --no-build"
+              -f=opencover 
+              -o="coverage.xml"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
