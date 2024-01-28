@@ -2,9 +2,11 @@
 using Application.Models.CategoriaModel;
 using Application.Models.ProdutoModel;
 using Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Application.Mappers
 {
+    [ExcludeFromCodeCoverage]
     public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()

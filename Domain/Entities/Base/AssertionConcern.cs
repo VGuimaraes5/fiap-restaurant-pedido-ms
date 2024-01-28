@@ -1,8 +1,10 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
 namespace Domain.Entities.Base
 {
+    [ExcludeFromCodeCoverage]
     public class AssertionConcern
     {
 
