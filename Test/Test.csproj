@@ -27,9 +27,5 @@
     <ProjectReference Include="..\API\API.csproj" />
     <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
-  
-  <PropertyGroup>
-    <CoverletExcludeProjects>Infrastructure</CoverletExcludeProjects>
-  </PropertyGroup>
 
 </Project>
