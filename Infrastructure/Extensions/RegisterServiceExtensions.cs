@@ -7,6 +7,10 @@ using Application.UseCases.ProdutoUseCase;
 using Domain.Gateways;
 using Infrastructure.DataProviders;
 using Infrastructure.DataProviders.Repositories;
+using Application.Models.PedidoModel;
+using Application.UseCases.PedidoUseCase;
+using Infrastructure.Bus;
+using Domain.Bus;
 
 namespace Infrastructure.Extensions
 {
@@ -26,12 +30,14 @@ namespace Infrastructure.Extensions
             services.AddTransient<IUseCaseAsync<ProdutoPostRequest>, PostProdutoUseCaseAsync>();
             services.AddTransient<IUseCaseAsync<ProdutoPutRequest>, PutProdutoUseCaseAsync>();
             services.AddTransient<IUseCaseAsync<ProdutoDeleteRequest>, DeleteProdutoUseCaseAsync>();
+            services.AddTransient<IUseCaseAsync<PedidoSendRequest, string>, PedidoSendUseCaseAsync>();
         }
 
         private static void AddRepositories(IServiceCollection services)
         {
             services.AddTransient<ICategoriaGateway, CategoriaRepository>();
             services.AddTransient<IProdutoGateway, ProdutoRepository>();
+            services.AddTransient<IPedidoBus, PedidoBus>();
         }
 
         private static void AddOthers(IServiceCollection services)

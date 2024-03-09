@@ -9,11 +9,9 @@ namespace API.Controllers
     public class CategoriaController : ControllerBase
     {
         private readonly IUseCaseIEnumerableAsync<IEnumerable<CategoriaResponse>> _useCaseAsyncResponse;
-        private readonly ILogger<CategoriaController> _logger;
 
-        public CategoriaController(ILogger<CategoriaController> logger, IUseCaseIEnumerableAsync<IEnumerable<CategoriaResponse>> useCaseAsyncResponse)
+        public CategoriaController(IUseCaseIEnumerableAsync<IEnumerable<CategoriaResponse>> useCaseAsyncResponse)
         {
-            _logger = logger;
             _useCaseAsyncResponse = useCaseAsyncResponse;
         }
 
