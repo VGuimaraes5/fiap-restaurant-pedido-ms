@@ -11,7 +11,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace Test.API
+namespace Test.API.Controllers
 {
     public class ProdutoControllerTest
     {

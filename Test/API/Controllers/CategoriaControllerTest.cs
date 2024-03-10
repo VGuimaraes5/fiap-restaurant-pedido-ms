@@ -4,7 +4,7 @@ using Application.UseCases;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-namespace Test.API
+namespace Test.API.Controllers
 {
     public class CategoriaControllerTest
     {
