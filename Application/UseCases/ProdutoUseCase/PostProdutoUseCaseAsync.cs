@@ -21,6 +21,7 @@ namespace Application.UseCases.ProdutoUseCase
             _mapper = mapper;
 
         }
+
         public async Task ExecuteAsync(ProdutoPostRequest request)
         {
             var insert = _mapper.Map<ProdutoPostRequest, Produto>(request);
