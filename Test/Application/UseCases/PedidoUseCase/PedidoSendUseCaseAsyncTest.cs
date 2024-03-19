@@ -3,6 +3,7 @@ using Application.UseCases.PedidoUseCase;
 using AutoMapper;
 using Domain.Bus;
 using Domain.Models;
+using Domain.Enums;
 using Moq;
 using System;
 using System.Threading.Tasks;
@@ -28,7 +29,13 @@ namespace Test.Application.UseCases.PedidoUseCase
         {
             // Arrange
             var request = new PedidoSendRequest();
-            var mappedPedido = new PedidoModel();
+            var mappedPedido = new PedidoModel
+            {
+                Produtos = new List<PedidoProdutoModel>(),
+                TipoPagamento = TipoPagamento.Cartao,
+                IdCliente = Guid.NewGuid(),
+                Senha = "TestPassword"
+            };
             _mapperMock.Setup(m => m.Map<PedidoSendRequest, PedidoModel>(request)).Returns(mappedPedido);
 
             // Act
@@ -39,5 +46,6 @@ namespace Test.Application.UseCases.PedidoUseCase
             _pedidoBusMock.Verify(p => p.SendAsync(mappedPedido), Times.Once);
             Assert.Equal(mappedPedido.Senha, result);
         }
+
     }
 }
