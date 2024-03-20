@@ -163,5 +163,13 @@ namespace Domain.Entities.Base
                 throw new InvalidOperationException(message);
             }
         }
+
+        public static void AssertCpfIsValid(string cpf, string message)
+        {
+            if (!CpfValidation.ValidCpf(cpf))
+            {
+                throw new InvalidOperationException(message);
+            }
+        }
     }
 }
