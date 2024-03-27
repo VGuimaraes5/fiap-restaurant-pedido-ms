@@ -1,4 +1,5 @@
 ﻿using Application.Models.PedidoModel;
+using Application.Models.ValueObject;
 using Application.UseCases.PedidoUseCase;
 using AutoMapper;
 using Domain.Bus;
@@ -28,12 +29,25 @@ namespace Test.Application.UseCases.PedidoUseCase
         public async Task ExecuteAsync_ShouldWorkCorrectly()
         {
             // Arrange
-            var request = new PedidoSendRequest();
+            var request = new PedidoSendRequest
+            {
+                Produtos = new List<ProdutoVO>
+        {
+            new ProdutoVO
+            {
+                NomeProduto = "TestProduct",
+                ValorProduto = 10.5m,
+                Observacao = "TestObservation"
+            }
+        },
+                TipoPagamento = TipoPagamento.Cartao,
+                IdCliente = Guid.NewGuid()
+            };
             var mappedPedido = new PedidoModel
             {
                 Produtos = new List<PedidoProdutoModel>(),
                 TipoPagamento = TipoPagamento.Cartao,
-                IdCliente = Guid.NewGuid(),
+                IdCliente = request.IdCliente.Value,
                 Senha = "TestPassword"
             };
             _mapperMock.Setup(m => m.Map<PedidoSendRequest, PedidoModel>(request)).Returns(mappedPedido);
@@ -46,6 +60,7 @@ namespace Test.Application.UseCases.PedidoUseCase
             _pedidoBusMock.Verify(p => p.SendAsync(mappedPedido), Times.Once);
             Assert.Equal(mappedPedido.Senha, result);
         }
+
 
     }
 }
