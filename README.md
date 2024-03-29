@@ -28,6 +28,11 @@ Caminho ./assets/owasp-zap-depois/documento.html
 ## Video demonstrativo
 <a href="https://youtu.be/asCFJ3McJUs?si=1QOsPyZ0-PkVIT8U">YouTube</a>
 
+## Sonar do projeto 
+Mantendo o coverage de 80% nos 3 microserviços
+<a href="https://sonarcloud.io/organizations/fiap-tech-challenge/projects">Sonar Cloud</a>
+
+
 ## Exemplo de request de Pedido
 
 ```json
